@@ -152,7 +152,7 @@ def Hough_Line_step1(edge, img):
         rho_max = np.ceil(np.sqrt(H ** 2 + W ** 2)).astype(np.int)
 
         # hough table
-        hough = np.zeros((rho_max * 2, 180), dtype=np.int)
+        hough = np.zeros((rho_max*2, 180), dtype=np.int)
 
         # get index of edge
         ind = np.where(edge == 255)
@@ -164,8 +164,10 @@ def Hough_Line_step1(edge, img):
                 t = np.pi / 180 * theta
                 rho = int(x * np.cos(t) + y * np.sin(t))
 
+                #print(rho+rho_max)
                 # vote
                 hough[rho + rho_max, theta] += 1
+                #hough[rho, theta] += 1
 
         out = hough.astype(np.uint8)
 
@@ -240,14 +242,14 @@ def Hough_Line_step1(edge, img):
     return out
 
 if __name__ == "__main__":
-    image = cv2.imread("../data/day05/imori.jpg")
+    image = cv2.imread("../data/day05/thorino.jpg")
     candy = Candy(image)
 
     gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
     edges = cv2.Canny(gray, 30, 100)
 
-    #out = Hough_Line_step1(edges, image)
-    cv2.imshow("out",edges)
+    out = Hough_Line_step1(candy, image)
+    cv2.imshow("out",out)
     cv2.waitKey()
 
 

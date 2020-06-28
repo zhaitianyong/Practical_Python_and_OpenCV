@@ -1,0 +1,26 @@
+
+from day03.Histogram import Histogram
+import os
+import cv2
+import numpy as np
+import matplotlib.pyplot as plt
+
+
+
+sampel_data_path = os.path.join("../data/day03/")
+
+
+
+if __name__ == "__main__":
+    histogram = Histogram()
+    image = cv2.imread(sampel_data_path + "imori_gamma.jpg", cv2.IMREAD_COLOR)
+    out = histogram.resize_bilinear_interpolation(image)
+
+    plt.subplot(1, 2, 1)
+    plt.hist(image.ravel(), bins=255, rwidth=0.8, range=(0, 255))
+    plt.subplot(1, 2, 2)
+    plt.hist(out.ravel(), bins=255, rwidth=0.8, range=(0, 255))
+
+    plt.show()
+    cv2.imshow("out", out)
+    cv2.waitKey()
