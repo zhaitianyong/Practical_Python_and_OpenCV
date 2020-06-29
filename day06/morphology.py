@@ -119,6 +119,7 @@ def BlakHat(img):
     close = Closing(img)
     return img - close
 
+
 if __name__ == "__main__":
     image = cv2.imread("../data/day05/imori.jpg")
     gray = BGR2GRAY(image)
