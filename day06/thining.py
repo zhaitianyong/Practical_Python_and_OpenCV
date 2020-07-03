@@ -4,7 +4,7 @@ import math
 import matplotlib.pyplot as plt
 from  day06.morphology import *
 
-
+# 细化
 def Thin(img):
     pass
 
